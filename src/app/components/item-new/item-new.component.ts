@@ -4,7 +4,7 @@ import { Item } from 'src/app/model/item.model';
 import { SharedService } from 'src/app/services/shared.service';
 import { ItemService } from 'src/app/services/item.service';
 import { ActivatedRoute } from '@angular/router';
-
+import { Response } from 'src/app/model/response.model'
 @Component({
   selector: 'app-item-new',
   templateUrl: './item-new.component.html',
@@ -34,15 +34,14 @@ export class ItemNewComponent implements OnInit {
   }
 
   findById(id:number) {
-    this.itemService.findById(id).subscribe((responseApi: Item) =>{
-      this.item.id = responseApi.id;
-      this.item.image = responseApi.image;
-      this.item.name = responseApi.name;
-      this.item.qtd_Stock = responseApi.qtd_Stock;
-      this.item.value = responseApi.value;
+    this.itemService.findById(id).subscribe((responseApi: Response) =>{
+      this.item = responseApi.data
     }, err =>{
-
-    })
+      this.showMessage({
+        type:'error',
+        text: err['error']['errors'][0]
+      });
+    });
   }
 
   register(){

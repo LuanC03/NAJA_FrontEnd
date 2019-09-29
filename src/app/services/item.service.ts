@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Item } from '../model/item.model';
 import { NAJA_API } from './naja.api';
 import { Deal } from '../model/deal.model';
+import { Response } from '../model/response.model';
 
 @Injectable()
 export class ItemService {
@@ -30,13 +31,17 @@ export class ItemService {
   }
 
   decreaseQtdItem({ id, qtd }: { id: number; qtd: number; }){
-    const deal = new Deal(id, qtd);    
-    return this.http.put(`${NAJA_API}/item/decreaseQtdItem`,deal);
+    return this.http.put(`${NAJA_API}/item/decreaseQtdItem`,(response:Response)=>{
+    response.data = new Deal(id, qtd),
+    response.errors = new Array();
+    });
   }
 
   increaseQtdItem({ id, qtd }: { id: number; qtd: number; }){
-    const deal = new Deal(id, qtd);    
-    return this.http.put(`${NAJA_API}/item/increaseQtdItem`,deal);
+    return this.http.put(`${NAJA_API}/item/decreaseQtdItem`,(response:Response)=>{
+    response.data = new Deal(id, qtd),
+    response.errors = new Array();
+    });
   }
 
   delete(id:number){
