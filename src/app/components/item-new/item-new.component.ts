@@ -15,7 +15,7 @@ export class ItemNewComponent implements OnInit {
   @ViewChild('form',null)
   form: NgForm
 
-  item = new Item(null,'',null,'',null);
+  item = new Item(null,'',null,null,null);
   shared :SharedService;
   message:{};
   classCss:{};
@@ -47,7 +47,7 @@ export class ItemNewComponent implements OnInit {
   register(){
     this.message = {};
     this.itemService.createOrUpdate(this.item).subscribe((responseApi: Item) =>{
-      this.item = new Item(null,'',null,'',null);
+      this.item = new Item(null,'',null,null,null);
       let itemRet : Item = responseApi;
       this.form.resetForm();
       this.showMessage({
@@ -60,6 +60,27 @@ export class ItemNewComponent implements OnInit {
         text: err['error']['errors'][0]
       });
     });
+  }
+
+  onFileChange(event):void{
+    if(event.target.files[0].size > 2000000){
+      this.showMessage ({
+        type:'error',
+        text: 'Maximum image size is 2 MB'
+      })
+    }else{
+      this.item.image = '';      
+      var reader = new FileReader();
+      reader.onloadend = (e:Event) => {
+        const csv: string | ArrayBuffer = reader.result;
+        if (typeof csv === 'string') {
+          this.item.image = csv;
+        }else {
+          this.item.image = csv.toString();
+        }
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
   }
 
   private showMessage(message: {type:string, text: string}):void{
