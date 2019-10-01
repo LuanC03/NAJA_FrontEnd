@@ -44,6 +44,10 @@ export class ItemListComponent implements OnInit {
     this.router.navigate(['/item-new', id]);
   }
 
+  detail(id:number){
+    this.router.navigate(['/ticket-detail', id]);
+  }
+
   delete(id:number){
     this.dialogService.confirm(' Do you want to delete this item ?')
     .then((candelete:boolean) =>{

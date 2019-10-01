@@ -2,8 +2,8 @@
     <strong>{{ message.text }}</strong>
 </div>
 <div class="row">
-<div class="col-md-8">
-    <div class="box">
+<div class="col-md-10">
+<div class="box">
     <div class="box-header with-border">
         <h3 class="box-title">Item List</h3>
     </div>
@@ -25,9 +25,11 @@
             <td>{{ item.value }}</td>
             <td><button class="btn btn-primary" (click)="edit(item.id)">Edit</button></td>
             <td><button class="btn btn-danger" (click)="delete(item.id)">Delete</button></td>
+            <td><button class="btn btn-success" (click)="detail(item.id)">Detail</button></td>
         </tr>
         <tr>            
         </table>
     </div>    
-    </div>
+</div>
+</div>
 </div>

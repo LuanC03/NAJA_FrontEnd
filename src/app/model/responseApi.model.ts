@@ -1,4 +1,4 @@
-export class Response {
+export class ResponseApi {
     public data: any;
     public errors: Array<string>;
 } 

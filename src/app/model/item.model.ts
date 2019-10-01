@@ -5,5 +5,6 @@ export class Item {
     public qtd_Stock: number,
     public image: string,
     public value: number,
+    public category: string
   ) {}
 }

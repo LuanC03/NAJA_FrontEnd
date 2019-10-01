@@ -17,6 +17,7 @@ import { SharedService } from './services/shared.service';
 import { AuthInterceptor } from './components/security/auth.interceptor';
 import { AuthGuard } from './components/security/auth.guard';
 import { ItemListComponent } from './components/item-list/item-list.component';
+import { ItemDetailComponent } from './components/item-detail/item-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ItemListComponent } from './components/item-list/item-list.component';
     FooterComponent,
     HomeComponent,
     LoginComponent,
-    ItemListComponent
+    ItemListComponent,
+    ItemDetailComponent
   ],
   imports: [
     BrowserModule,
