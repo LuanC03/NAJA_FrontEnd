@@ -9,46 +9,47 @@
     </div>
     <div class="form-group">
         <label for="inputCategory" class="col-sm-1 control-label">Category</label>
-        <div class="col-sm-10" style="margin-left: 5%">
+        <!--<div class="col-sm-10" style="margin-left: 5%">
             <select
-                [(ngModel)]="item.category"
                 class="form-control"
                 name="category"
                 id="inputCategory"
-                style="width: 40%">               
-                <option>TV</option>
+                style="width: 40%">
+                <option (click)="categorySelector('tvs')">tvs</option>
                 <option>CELULAR</option>
                 <option>ELETRODOMESTICO</option>
-                <option>VIDEOGAME</option>
+                <option (click)="categorySelector('videogames')">videogames</option>
             </select>
-        </div>
+        </div>-->
     </div>
     <div class="box-footer">
-        <button class="btn btn-info pull-left" (click)="filter()">Filter</button>
+        <button class="btn btn-info pull-left" (click)="categorySelector('tvs')">TV</button>
+        <button class="btn btn-info pull-left" (click)="categorySelector('celulares')">CELULAR</button>
+        <button class="btn btn-info pull-left" (click)="categorySelector('videogames')">VIDEOGAME</button>
+        <button class="btn btn-info pull-left" (click)="categorySelector('eletrodomésticos')">ELETRODOMESTICO</button>
     </div>
     <div class="box-body" >
         <table class="table table-bordered">
         <tr>
-            <th style="width: 10px">#</th>
-            <th>ID</th>
             <th>Nome</th>
             <th>Quantidade em Estoque</th>
             <th>Valor</th>
+            <th>Categoria</th>
             <th style="width: 40px">&nbsp;</th>
             <th style="width: 40px">&nbsp;</th>
         </tr>
-        <tr *ngFor= "let user of listItem">
-            <td>{{ item.id }}</td>
-            <td>{{ item.name }}</td>
-            <td>{{ item.qtd_Stock }}</td>
-            <td>{{ item.value }}</td>
-            <td><button class="btn btn-primary" (click)="edit(item.id)">Edit</button></td>
-            <td><button class="btn btn-danger" (click)="delete(item.id)">Delete</button></td>
-            <td><button class="btn btn-success" (click)="detail(item.id)">Detail</button></td>
-        </tr>
-        <tr>            
+        <tr *ngFor= "let item of listItem" >
+                <td [ngStyle]="{'background-color':getColor(item.quantidade_item)}">{{ item.nome_item }}</td>
+                <td [ngStyle]="{'background-color':getColor(item.quantidade_item)}">{{ item.quantidade_item }}</td>
+                <td [ngStyle]="{'background-color':getColor(item.quantidade_item)}">{{ item.valor }}</td>
+                <td [ngStyle]="{'background-color':getColor(item.quantidade_item)}">{{ item.categoria_item }}</td> 
+            <td><button class="btn btn-primary" (click)="edit(item._id)">Edit</button></td>
+            <td><button class="btn btn-danger" (click)="delete(item._id)">Delete</button></td>
+            <td><button class="btn btn-success" (click)="detail(item._id)">Detail</button></td>
+        </tr>        
+        <tr>
         </table>
-    </div>    
+    </div>
 </div>
 </div>
 </div>

@@ -19,11 +19,11 @@ export class ItemService {
   }
 
   findAll(){
-    return this.http.get(`${NAJA_API}/item/`);
+    return this.http.get(`${NAJA_API}/`);
   }
 
   findByCategory(category:string){
-    return this.http.get(`${NAJA_API}/item/category/${category}`);
+    return this.http.get(`${NAJA_API}/categoria?categoria_item=${category}`);
   }
 
   findById(id:number){
@@ -45,7 +45,6 @@ export class ItemService {
   }
 
   delete(id:number){
-    return this.http.delete(`${NAJA_API}/item/id/${id}`);
+    return this.http.delete(`${NAJA_API}/remove?id=${id}`);
   }
-
 }

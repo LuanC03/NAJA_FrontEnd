@@ -1,3 +1,4 @@
+import { Item } from 'src/app/model/item.model';
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/services/shared.service';
 import { ItemService } from 'src/app/services/item.service';
@@ -16,13 +17,13 @@ export class ItemListComponent implements OnInit {
   shared : SharedService;
   message:{};
   classCss:{};
-  listItem: [];  
+  listItem: Array<Item>;
 
   constructor(
     private dialogService: DialogService,
     private itemService: ItemService,
     private router: Router
-  ) { 
+  ) {
     this.shared = SharedService.getInstance();
   }
 
@@ -31,8 +32,11 @@ export class ItemListComponent implements OnInit {
   }
 
   findAll(){
-    this.itemService.findAll().subscribe((response:Response) => {
-      this.listItem = response['data']['content'];
+    this.itemService.findAll().subscribe((itens:Array<Item>) => {
+      this.listItem = new Array<Item>();
+      itens.forEach(element => {
+        this.listItem.push(element);
+      });
     }, err =>{
         this.showMessage({
         type: 'error',
@@ -41,15 +45,26 @@ export class ItemListComponent implements OnInit {
     });
   }
 
-  categorySelector(): void{
-    this.itemService.findByCategory(this.category).subscribe((responseApi:ResponseApi) =>{
-      
+  getColor(qtd:number):string{
+    if(qtd > 0 && qtd <=10){
+      return '#DAA520';
+    }else if(qtd <= 0){
+      return '#FF4500';
+    }
+  }
+
+  categorySelector(categoria:string){
+    this.itemService.findByCategory(categoria).subscribe((itens:Array<Item>) =>{
+      this.listItem = new Array<Item>();
+      itens.forEach(element => {
+        this.listItem.push(element);
+      });
     }, err => {
       this.showMessage({
         type:'error',
-        text:err['error']['errors'][0]
-      })
-    })
+        text:'deumerda'
+      });
+    });
   }
 
   edit(id:number){
