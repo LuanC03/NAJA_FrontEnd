@@ -1,13 +1,32 @@
 <div [ngClass]="classCss" role="alert" *ngIf="message">
     <strong>{{ message.text }}</strong>
 </div>
-<div class="row">
+<div class="row" style="margin-left: 20%">
 <div class="col-md-10">
 <div class="box">
     <div class="box-header with-border">
         <h3 class="box-title">Item List</h3>
     </div>
-    <div class="box-body">
+    <div class="form-group">
+        <label for="inputCategory" class="col-sm-1 control-label">Category</label>
+        <div class="col-sm-10" style="margin-left: 5%">
+            <select
+                [(ngModel)]="item.category"
+                class="form-control"
+                name="category"
+                id="inputCategory"
+                style="width: 40%">               
+                <option>TV</option>
+                <option>CELULAR</option>
+                <option>ELETRODOMESTICO</option>
+                <option>VIDEOGAME</option>
+            </select>
+        </div>
+    </div>
+    <div class="box-footer">
+        <button class="btn btn-info pull-left" (click)="filter()">Filter</button>
+    </div>
+    <div class="box-body" >
         <table class="table table-bordered">
         <tr>
             <th style="width: 10px">#</th>

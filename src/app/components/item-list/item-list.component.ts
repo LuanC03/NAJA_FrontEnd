@@ -3,6 +3,7 @@ import { SharedService } from 'src/app/services/shared.service';
 import { ItemService } from 'src/app/services/item.service';
 import { DialogService } from 'src/app/dialog.service';
 import { Router } from '@angular/router';
+import { ResponseApi } from 'src/app/model/responseApi.model';
 
 @Component({
   selector: 'app-item-list',
@@ -11,11 +12,11 @@ import { Router } from '@angular/router';
 })
 export class ItemListComponent implements OnInit {
 
-  category = null;
+  category = '';
   shared : SharedService;
   message:{};
   classCss:{};
-  listItem: [];
+  listItem: [];  
 
   constructor(
     private dialogService: DialogService,
@@ -38,6 +39,17 @@ export class ItemListComponent implements OnInit {
         text: err['error']['errors'][0]
       });
     });
+  }
+
+  categorySelector(): void{
+    this.itemService.findByCategory(this.category).subscribe((responseApi:ResponseApi) =>{
+      
+    }, err => {
+      this.showMessage({
+        type:'error',
+        text:err['error']['errors'][0]
+      })
+    })
   }
 
   edit(id:number){

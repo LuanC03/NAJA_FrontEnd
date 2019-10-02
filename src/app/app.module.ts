@@ -18,6 +18,8 @@ import { AuthInterceptor } from './components/security/auth.interceptor';
 import { AuthGuard } from './components/security/auth.guard';
 import { ItemListComponent } from './components/item-list/item-list.component';
 import { ItemDetailComponent } from './components/item-detail/item-detail.component';
+import { ItemService } from './services/item.service';
+import { DialogService } from 'src/app/dialog.service';
 
 @NgModule({
   declarations: [
@@ -39,9 +41,11 @@ import { ItemDetailComponent } from './components/item-detail/item-detail.compon
     routes
   ],
   providers: [
-    UserService, 
+    UserService,  
+    ItemService,
     SharedService, 
     AuthGuard,
+    DialogService,
     {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,

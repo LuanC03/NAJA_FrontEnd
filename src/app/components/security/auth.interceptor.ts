@@ -18,7 +18,7 @@ export class AuthInterceptor implements HttpInterceptor{
         if(this.shared.isLoggedIn()){
             authRequest = req.clone({
                 setHeaders:{
-                    'Authorization' :this.shared.token
+                    'Authorization' :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJuYWphIiwic3ViIjoiNWQ5MjY0MmZjOWRhMTA1MDA0NmQ2YWZlIiwiaWF0IjoxNTY5OTY5MzU5MDQxLCJleHAiOjE1NzAwNTU3NTkwNDF9.wN0VD2_LsVKmnlMHyY4VQPF99ygrCt6nr2inelpYWwk'
                 }
             });
             return next.handle(authRequest);

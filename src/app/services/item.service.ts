@@ -11,10 +11,10 @@ export class ItemService {
 
   createOrUpdate(item:Item){
     if(item.id != null){
-      return this.http.put(`${NAJA_API}/item`, item);
+      return this.http.put(`${NAJA_API}/criar`, item);
     }else{
       item.id = null;
-      return this.http.post(`${NAJA_API}/item/create`,item);
+      return this.http.post(`${NAJA_API}/criar`,item);
     }
   }
 

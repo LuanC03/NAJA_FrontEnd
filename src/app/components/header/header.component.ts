@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
 
   constructor() { 
     this.shared = SharedService.getInstance();
-    this.shared.user = new User(null,'','','','');
+    this.shared.user = new User('','','');
   }
 
   ngOnInit() {

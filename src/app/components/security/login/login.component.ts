@@ -12,7 +12,7 @@ import { CurrentUser } from 'src/app/model/current-user.model';
 })
 export class LoginComponent implements OnInit {
 
-  user = new User(null,'','','','');
+  user = new User('','','');
   shared: SharedService;
   message: string;
   constructor(
@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.user).subscribe((userAuthentication: CurrentUser) => {
       this.shared.token = userAuthentication.token;
       this.shared.user = userAuthentication.user;
-      this.shared.user.profile = this.shared.user.profile.substring(5);
       this.shared.showTemplate.emit(true);
       this.router.navigate(['/']);
     }, err =>{
@@ -43,7 +42,7 @@ export class LoginComponent implements OnInit {
   
   cancelLogin(){
     this.message = '';
-    this.user = new User(null,'','','','');
+    this.user = new User('','','');
     window.location.href = '/login';
     window.location.reload();
   }

@@ -4,7 +4,7 @@ import { Item } from 'src/app/model/item.model';
 import { SharedService } from 'src/app/services/shared.service';
 import { ItemService } from 'src/app/services/item.service';
 import { ActivatedRoute } from '@angular/router';
-import { ResponseApi } from 'src/app/model/responseApi.model'
+import { ResponseApi } from 'src/app/model/responseApi.model';
 @Component({
   selector: 'app-item-new',
   templateUrl: './item-new.component.html',
@@ -12,10 +12,10 @@ import { ResponseApi } from 'src/app/model/responseApi.model'
 })
 export class ItemNewComponent implements OnInit {
 
-  @ViewChild('form',null)
+  @ViewChild('form', {static:false})
   form: NgForm
 
-  item = new Item(null,'',null,null,null,'');
+  item = new Item(null,'',null,'',null,'');
   shared :SharedService;
   message:{};
   classCss:{};
@@ -27,22 +27,7 @@ export class ItemNewComponent implements OnInit {
   }
 
   ngOnInit() {
-    let id : number = this.route.snapshot.params['id'];
-    if(id != undefined){
-      this.findById(id);
     }
-  }
-
-  findById(id:number) {
-    this.itemService.findById(id).subscribe((responseApi: ResponseApi) =>{
-      this.item = responseApi.data;
-    }, err =>{
-      this.showMessage({
-        type:'error',
-        text: err['error']['errors'][0]
-      });
-    });
-  }
 
   findByCategory(category:string) {
     this.itemService.findByCategory(category).subscribe((responseApi: ResponseApi) =>{
@@ -57,9 +42,9 @@ export class ItemNewComponent implements OnInit {
 
   register(){
     this.message = {};
-    this.itemService.createOrUpdate(this.item).subscribe((responseApi: Item) =>{
+    this.itemService.createOrUpdate(this.item).subscribe((responseApi: ResponseApi) =>{
       this.item = new Item(null,'',null,null,null,'');
-      let itemRet : Item = responseApi;
+      let itemRet : Item = responseApi.data;
       this.form.resetForm();
       this.showMessage({
         type:'success',
