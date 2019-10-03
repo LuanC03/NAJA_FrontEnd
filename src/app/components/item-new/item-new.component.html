@@ -5,7 +5,6 @@
         </div>
         <form class="form-horizontal" #form="ngForm" (ngSubmit)="register()">
             <div [ngClass]="classCss" role="alert" *ngIf="message">
-                <strong>{{message.text}}</strong>
             </div>
             <div class="box-body">               
                     <label for="inputName" class="col-sm-2 control-label">Nome</label>
@@ -24,9 +23,9 @@
                     <label for="inputQtdItem" class="col-sm-2 control-label">Quantidade</label>
                     <div class="col-sm-9">
                         <input type="number" 
-                        [(ngModel)]="item.qtdStock" 
+                        [(ngModel)]="item.qtd_Stock" 
                         class="form-control" 
-                        id="qtdStock"
+                        id="qtd_Stock"
                         name="inputQtdItem" 
                         #qtdStock="ngModel" 
                         placeholder="Total de unidades" 
@@ -37,10 +36,10 @@
                     <label for="inputValue" class="col-sm-2 control-label">Valor</label>
                     <div class="col-sm-9">
                         <input type="number" 
-                        [(ngModel)]="item.value" 
+                        [(ngModel)]="item.valor" 
                         class="form-control" 
-                        id="value" 
-                        name="value"                            
+                        id="valor" 
+                        name="valor"                            
                         #value="ngModel" 
                         placeholder="Valor do item" 
                         required>
@@ -67,7 +66,7 @@
                     <label for="inputImage" class="col-sm-2 control-label">Item Image</label>
                     <div class="col-sm-9">
                         <img [src]="item.image" width="50%" height="50%">
-                        <input type="file" id="image" (change)="onFileChance($event)">
+                        <input type="file" id="image" (change)="onFileChange($event)">
                     </div>
                 </div>
             <div class="box-footer">

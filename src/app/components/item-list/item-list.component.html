@@ -1,5 +1,4 @@
 <div [ngClass]="classCss" role="alert" *ngIf="message">
-    <strong>{{ message.text }}</strong>
 </div>
 <div class="row" style="margin-left: 20%">
 <div class="col-md-10">
@@ -39,10 +38,10 @@
             <th style="width: 40px">&nbsp;</th>
         </tr>
         <tr *ngFor= "let item of listItem" >
-                <td [ngStyle]="{'background-color':getColor(item.quantidade_item)}">{{ item.nome_item }}</td>
-                <td [ngStyle]="{'background-color':getColor(item.quantidade_item)}">{{ item.quantidade_item }}</td>
-                <td [ngStyle]="{'background-color':getColor(item.quantidade_item)}">{{ item.valor }}</td>
-                <td [ngStyle]="{'background-color':getColor(item.quantidade_item)}">{{ item.categoria_item }}</td> 
+                <td [ngStyle]="{'background-color':getColor(item.quantidade_item)}">{{item.nome_item }}</td>
+                <td [ngStyle]="{'background-color':getColor(item.quantidade_item)}">{{item.quantidade_item }}</td>
+                <td [ngStyle]="{'background-color':getColor(item.quantidade_item)}">{{item.valor}}</td>
+                <td [ngStyle]="{'background-color':getColor(item.quantidade_item)}">{{item.categoria_item}}</td> 
             <td><button class="btn btn-primary" (click)="edit(item._id)">Edit</button></td>
             <td><button class="btn btn-danger" (click)="delete(item._id)">Delete</button></td>
             <td><button class="btn btn-success" (click)="detail(item._id)">Detail</button></td>
