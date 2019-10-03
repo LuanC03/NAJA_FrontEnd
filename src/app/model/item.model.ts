@@ -4,7 +4,7 @@ export class Item {
     public name: string,
     public qtd_Stock: number,
     public image: string,
-    public value: number,
+    public valor: number,
     public category: string
   ) {}
 }

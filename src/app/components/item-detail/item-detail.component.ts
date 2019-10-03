@@ -3,7 +3,6 @@ import { Item } from 'src/app/model/item.model';
 import { SharedService } from 'src/app/services/shared.service';
 import { ItemService } from 'src/app/services/item.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ResponseApi } from 'src/app/model/responseApi.model';
 
 @Component({
   selector: 'app-item-detail',
@@ -33,9 +32,8 @@ export class ItemDetailComponent implements OnInit {
   }
 
   findById(id:number){
-    this.itemService.findById(id).subscribe((responseApi: ResponseApi) => {
-      this.item = responseApi.data;
-      this
+    this.itemService.findById(id).subscribe((item: Item) => {
+      this.item = item;
     }, err => {
       this.showMessage({
         type: 'error',

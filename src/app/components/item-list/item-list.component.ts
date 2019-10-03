@@ -4,7 +4,6 @@ import { SharedService } from 'src/app/services/shared.service';
 import { ItemService } from 'src/app/services/item.service';
 import { DialogService } from 'src/app/dialog.service';
 import { Router } from '@angular/router';
-import { ResponseApi } from 'src/app/model/responseApi.model';
 
 @Component({
   selector: 'app-item-list',

@@ -4,7 +4,6 @@ import { Item } from 'src/app/model/item.model';
 import { SharedService } from 'src/app/services/shared.service';
 import { ItemService } from 'src/app/services/item.service';
 import { ActivatedRoute } from '@angular/router';
-import { ResponseApi } from 'src/app/model/responseApi.model';
 @Component({
   selector: 'app-item-new',
   templateUrl: './item-new.component.html',
@@ -30,8 +29,8 @@ export class ItemNewComponent implements OnInit {
     }
 
   findByCategory(category:string) {
-    this.itemService.findByCategory(category).subscribe((responseApi: ResponseApi) =>{
-      this.item = responseApi.data;
+    this.itemService.findByCategory(category).subscribe((item: Item) =>{
+      this.item = item;
     }, err =>{
       this.showMessage({
         type:'error',
@@ -40,11 +39,11 @@ export class ItemNewComponent implements OnInit {
     });
   }
 
-  register(){
+  register():void{
     this.message = {};
-    this.itemService.createOrUpdate(this.item).subscribe((responseApi: ResponseApi) =>{
+    this.itemService.createOrUpdate(this.item).subscribe((item: Item) =>{     
+      let itemRet : Item = item;
       this.item = new Item(null,'',null,null,null,'');
-      let itemRet : Item = responseApi.data;
       this.form.resetForm();
       this.showMessage({
         type:'success',
@@ -92,5 +91,21 @@ export class ItemNewComponent implements OnInit {
       'alert' : true
     }
     this.classCss['alert-'+type] = true;
+  }
+
+  getFromGroupClass(isInvalid: boolean, isDirty):{}{
+    return{
+      'form-group': true,
+      'has-error' : isInvalid && isDirty,
+      'has-sucess' : !isInvalid && isDirty
+    }
+  }
+
+  getFromGroupClass2(isInvalid: number, isDirty):{}{
+    return{
+      'form-group': true,
+      'has-error' : isInvalid <=  0 && isDirty,
+      'has-sucess' : isInvalid > 0 && isDirty
+    }
   }
 }

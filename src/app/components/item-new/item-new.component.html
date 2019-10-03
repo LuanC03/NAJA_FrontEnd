@@ -1,4 +1,4 @@
-<div class="col-md-8" style="margin-left: 15%">
+<div class="col-md-8" style="margin-left: 18%">
     <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title">Naja | New Item</h3>
@@ -7,46 +7,48 @@
             <div [ngClass]="classCss" role="alert" *ngIf="message">
                 <strong>{{message.text}}</strong>
             </div>
-            <div class="box-body">
-                <div [ngClass]="getFromGroupClass(name.invalid, name.dirty)">
-                    <label for="inputName" class="col-sm-2 control-label">Item Name</label>
-                    <div class="col-sm-10">
+            <div class="box-body">               
+                    <label for="inputName" class="col-sm-2 control-label">Nome</label>
+                    <div class="col-sm-9">
                         <input type="text" 
                         [(ngModel)]="item.name" 
                         class="form-control" 
                         id="name" 
                         name="inputName"
                         #name="ngModel" 
-                        placeholder="Name" 
+                        placeholder="Nome do Item" 
                         required>
-                        <span class="help-block" *ngIf="name.invalid && name.dirty">Name is Required</span>
-                    </div>
+                     </div>
                 </div>
-                <div [ngClass]="getFromGroupClass(qtdStock.invalid, qtdStock.dirty)">
-                    <label for="inputQtdItem" class="col-sm-2 control-label">Item Quantity</label>
-                    <div class="col-sm-10">
+                <div >
+                    <label for="inputQtdItem" class="col-sm-2 control-label">Quantidade</label>
+                    <div class="col-sm-9">
                         <input type="number" 
                         [(ngModel)]="item.qtdStock" 
                         class="form-control" 
                         id="qtdStock"
                         name="inputQtdItem" 
                         #qtdStock="ngModel" 
-                        placeholder="qtdStock" 
+                        placeholder="Total de unidades" 
                         required>
-                        <span class="help-block" *ngIf="qtdStock.invalid && qtdStock.dirty">Invalid Amount</span>
-                    </div>
+                     </div>
                 </div>                
-                <div [ngClass]="getFromGroupClass(value.invalid, value.dirty)">
-                    <label for="value" class="col-sm-2 control-label">Item Value</label>
-                    <div class="col-sm-10">
-                        <input type="number" [(ngModel)]="item.value" class="form-control" id="value" name="value"
-                            #value="ngModel" placeholder="value" required>
-                        <span class="help-block" *ngIf="value.invalid && value.dirty">Invalid Value</span>
-                    </div>
+                <div>
+                    <label for="inputValue" class="col-sm-2 control-label">Valor</label>
+                    <div class="col-sm-9">
+                        <input type="number" 
+                        [(ngModel)]="item.value" 
+                        class="form-control" 
+                        id="value" 
+                        name="value"                            
+                        #value="ngModel" 
+                        placeholder="Valor do item" 
+                        required>
+                     </div>
                 </div>
-                <div [ngClass]="getFromGroupClass(category.invalid, category.dirty)">
-                    <label for="inputCategory" class="col-sm-2 control-label">Item Category</label>
-                    <div class="col-sm-10">
+                <div>
+                    <label for="inputCategory" class="col-sm-2 control-label">Categoria</label>
+                    <div class="col-sm-9">
                         <select [(ngModel)]="item.category"
                             class="form-control select2"
                             id="inputCategory"
@@ -59,17 +61,15 @@
                             <option>VIDEOGAMES</option>
                             <option>CELULARES</option>
                         </select>
-                        <span class="help-block" *ngIf="category.invalid && category.dirty">Category is required</span>
-                    </div>
+                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputImage" class="col-sm-2 control-label">Item Image</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-9">
                         <img [src]="item.image" width="50%" height="50%">
                         <input type="file" id="image" (change)="onFileChance($event)">
                     </div>
                 </div>
-            </div>
             <div class="box-footer">
                 <button type="submit" [disabled]="!form.valid" class="btn btn-info pull-right">Register</button>
             </div>
